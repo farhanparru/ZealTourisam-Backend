@@ -3,6 +3,6 @@ const controller = require('../EnquiryVisa/Enquiry')
 
 
 router.post('/enquiry', controller.addEnquiryVisa)
-router.get('/getEnquirys', controller.getEnquiryVisa)
+router.get('/VisagetEnquirys', controller.getEnquiryVisa)
 
 module.exports = router;

@@ -29,6 +29,7 @@ app.use('/api/admin', require("./routes/admin/index"));
 app.use('/api/global-visa', require("./routes/global-visa/index"));
 app.use('/api/umrahaall', require('./routes/Umraha for all/index'))
 app.use('/api/enquire', require("./routes/enquire/index"))
+app.use('/api/globalvisa', require('./routes/EnquiryVisa/index'))
 
 // Middleware to parse JSON bodies
 // app.use(bodyParser.json());
