@@ -5,9 +5,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors")
-var indexRouter = require('./routes/index');
+var indexRouter = require('../routes/index');
 const { default: mongoose } = require("mongoose");
-const umraha = require("./models/umraha");
+
 
 var app = express();
 
@@ -24,12 +24,12 @@ app.use("/uploads", express.static(path.join(__dirname, 'uploads')));
 
 // app.use('/api/model', require("./routes/model/index"))
 app.use('/', indexRouter);
-app.use('/api/holidays', require("./routes/holidays/index"));
-app.use('/api/admin', require("./routes/admin/index"));
-app.use('/api/global-visa', require("./routes/global-visa/index"));
-app.use('/api/umrahaall', require('./routes/Umraha for all/index'))
-app.use('/api/enquire', require("./routes/enquire/index"))
-app.use('/api/globalvisa', require('./routes/EnquiryVisa/index'))
+app.use('/api/holidays', require("../routes/holidays/index"));
+app.use('/api/admin', require("../routes/admin/index"));
+app.use('/api/global-visa', require("../routes/global-visa/index"));
+app.use('/api/umrahaall', require('../routes/Umraha for all/index'))
+app.use('/api/enquire', require("../routes/enquire/index"))
+app.use('/api/globalvisa', require('../routes/EnquiryVisa/index'))
 
 // Middleware to parse JSON bodies
 // app.use(bodyParser.json());
