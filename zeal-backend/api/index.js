@@ -8,17 +8,15 @@ const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const app = express();
 
-const  corsConfig = {
-    origin: "*",
-    credential : true,
-    methods :["GET","POST","PUT","DELETE"]
-}
 
 
 
+app.use(cors({
+  origin:["https://zeal-tourisam-admin.vercel.app"],
+  methods: ["GET,POST,PUT,DELETE,PATCH"],
+  credentials: true,
+}))
 
-// Apply CORS middleware to all routes
-app.use(cors(corsConfig));
 
 
 mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.u2uii.mongodb.net/TravelsToursWeb?retryWrites=true&w=majority&appName=Cluster0',{  
@@ -27,9 +25,6 @@ mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.u2uii.mongod
 }).then(()=>console.log('Databse connected')).catch((err)=>console.log("err",err))
 
 
-
-// Optionally handle pre-flight requests (this is typically done with middleware)
-app.options('*', cors(corsConfig)); // Allow all routes for OPTIONS request
 
 
 
