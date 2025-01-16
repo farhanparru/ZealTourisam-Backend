@@ -27,24 +27,10 @@ const server = http.createServer(app);
  * Connect to MongoDB with Mongoose.
  */
 
-const mongoDBUri = 'mongodb+srv://shaminmuhammad116:PARRU123@cluster0.u2uii.mongodb.net/TravelsToursWeb?retryWrites=true&w=majority&appName=Cluster0' ; // replace with your MongoDB URI
-mongoose.connect(mongoDBUri, {
+mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.u2uii.mongodb.net/TravelsToursWeb?retryWrites=true&w=majority&appName=Cluster0',{  
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-// Mongoose connection events
-mongoose.connection.on('connected', () => {
-  console.log('Mongoose connected to ' + mongoDBUri);
-});
-
-mongoose.connection.on('error', (err) => {
-  console.error('Mongoose connection error: ' + err);
-});
-
-mongoose.connection.on('disconnected', () => {
-  console.log('Mongoose disconnected');
-});
+  useUnifiedTopology: true 
+}).then(()=>console.log('Databse connected')).catch((err)=>console.log("err",err))
 
 /**
  * Listen on provided port, on all network interfaces.
