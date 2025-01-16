@@ -32,9 +32,7 @@ mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.u2uii.mongod
   useUnifiedTopology: true 
 }).then(()=>console.log('Databse connected')).catch((err)=>console.log("err",err))
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+
 
 server.listen(port);
 server.on('error', onError);
