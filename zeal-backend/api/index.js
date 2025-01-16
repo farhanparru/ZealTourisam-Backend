@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var cors = require("cors")
+const cors = require('cors')
 const { default: mongoose } = require("mongoose");
 const bodyParser = require("body-parser");
 
@@ -12,7 +12,12 @@ const bodyParser = require("body-parser");
 var app = express();
 
 
-app.use(cors())
+app.use(cors({
+    origin:["https://zeal-tourisam-admin.vercel.app"],
+    methods: ["GET,POST,PUT,DELETE,PATCH"],
+    credentials: true,
+  }))
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(express.json());
