@@ -8,16 +8,19 @@ const { default: mongoose } = require("mongoose");
 const bodyParser = require("body-parser");
 
 
+const  corsConfig = {
+    origin: "*",
+    credential : true,
+    methods :["GET","POST","PUT","DELETE"]
+}
+
+
+
+
+app.options("", cors(corsConfig))
+app.use(cors())
 
 var app = express();
-
-
-app.use(cors({
-    origin:["https://zeal-tourisam-admin.vercel.app"],
-    methods: ["GET,POST,PUT,DELETE,PATCH"],
-    credentials: true,
-  }))
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(express.json());
