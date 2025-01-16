@@ -51,10 +51,9 @@ app.use(function(req, res, next) {
 });
 
 
-app.get('/',(req,res)=>{
-    res.send('MY ZealTourisam')
-})
-
+app.get('/', (req, res) => {
+  res.send('Welcome to ZealTourism Backend!');
+});
 
 // error handler
 app.use(function(err, req, res, next) {
