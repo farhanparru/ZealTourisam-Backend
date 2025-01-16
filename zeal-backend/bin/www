@@ -27,7 +27,7 @@ const server = http.createServer(app);
  * Connect to MongoDB with Mongoose.
  */
 
-const mongoDBUri = process.env.MONGODB_URI ; // replace with your MongoDB URI
+const mongoDBUri = 'mongodb+srv://shaminmuhammad116:PARRU123@cluster0.u2uii.mongodb.net/TravelsToursWeb?retryWrites=true&w=majority&appName=Cluster0' ; // replace with your MongoDB URI
 mongoose.connect(mongoDBUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
