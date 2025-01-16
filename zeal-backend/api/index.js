@@ -1,19 +1,19 @@
-require("dotenv").config(); // Load environment variables
-const express = require('express'); // Import express
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors'); // CORS middleware
-const mongoose = require('mongoose'); // MongoDB
-const bodyParser = require('body-parser');
-const app = express(); // Create the express app instance
+require("dotenv").config()
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+const cors = require('cors')
+const { default: mongoose } = require("mongoose");
+const bodyParser = require("body-parser");
+const app = express();
 
-// CORS configuration
-const corsConfig = {
-    origin: "*", // Allow all origins, adjust as needed
-    credentials: true, // Allow cookies to be sent
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
-};
+const  corsConfig = {
+    origin: "*",
+    credential : true,
+    methods :["GET","POST","PUT","DELETE"]
+}
+
 
 
 
@@ -22,7 +22,6 @@ app.use(cors(corsConfig));
 
 // Optionally handle pre-flight requests (this is typically done with middleware)
 app.options('*', cors(corsConfig)); // Allow all routes for OPTIONS request
-
 
 
 
