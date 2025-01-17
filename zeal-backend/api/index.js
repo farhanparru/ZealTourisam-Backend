@@ -12,7 +12,7 @@ const app = express();
 
 
 app.use(cors({
-  origin:["https://admin-ruby-psi.vercel.app"],
+  origin:["https://admin-gules-five.vercel.app"],
   methods: ["GET,POST,PUT,DELETE,PATCH"],
   credentials: true,
 }))
