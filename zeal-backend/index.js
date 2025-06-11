@@ -21,7 +21,7 @@ app.use(cors({
 
 
 
-mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.jnuxpcv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{  
+mongoose.connect(process.env.MONGODB_URI,{  
   useNewUrlParser: true,
   useUnifiedTopology: true 
 }).then(()=>console.log('Databse connected')).catch((err)=>console.log("err",err))
