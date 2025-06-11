@@ -2,9 +2,9 @@ const Admin = require("../../models/Admin"); // Ensure the path is correct
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const jwtSecret = secret;
-const defaultAdminUsername = ZealTourisam;
-const defaultAdminPassword = Admin1234567;
+const jwtSecret = process.env.JWT_ADMIN_SECRET;
+const defaultAdminUsername = process.env.DEFAULT_ADMIN_USERNAME;
+const defaultAdminPassword = process.env.DEFAULT_ADMIN_PASSWORD;
 
 // Login an admin
 module.exports.login = async (req, res) => {
