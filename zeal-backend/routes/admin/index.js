@@ -6,7 +6,6 @@ const adminAuth = require('../../middlewares/AdminAuth'); // Adjust path as need
 // Login an admin
 router.post('/login', adminController.login);
 
-// Protected route
 router.get('/protected', adminAuth, adminController.protected);
 
 router.post('/adminLogout', adminController.AdminLogout)
