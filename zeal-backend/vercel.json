@@ -1,15 +1,15 @@
 {
-  "version": 2,
+  "devCommand": "npm run dev",
   "builds": [
     {
-      "src": "zeal-backend/index.js",
+      "src": "/index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "zeal-backend/index.js"
+      "dest": "/index.js"
     }
   ]
 }
