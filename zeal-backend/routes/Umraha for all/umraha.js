@@ -71,7 +71,8 @@ console.log(UmrahaforAll);
 const BASE_URL = 'http://localhost:3002/uploads';
 
 module.exports.add = async (req, res) => {
-    console.log("Request Body:", req.body);
+    //   console.log("Request Body:", req.body);
+    //   console.log("Request Files:", req.files); // Add this to debug
 
     try {
         // Handle images

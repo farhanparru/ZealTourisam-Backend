@@ -58,7 +58,7 @@ const BASE_URL = 'http://localhost:3002/uploads'; // Change this to your server'
 
 module.exports.add = async (req, res) => {
     try {
-        console.log(req.body);
+        // console.log(req.body);
 
         // Handle images array
         const images = req.files && req.files['images'] 

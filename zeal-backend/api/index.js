@@ -10,20 +10,23 @@ const app = express();
 
 
 
+console.log("Starting");
 
 app.use(cors({
-  origin:["https://admin-gules-five.vercel.app"],
+  origin:["http://localhost:5173"],
   methods: ["GET,POST,PUT,DELETE,PATCH"],
   credentials: true,
 }))
 
 
+console.log("Sundder");
 
-mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.u2uii.mongodb.net/TravelsToursWeb?retryWrites=true&w=majority&appName=Cluster0',{  
+mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.jnuxpcv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{  
   useNewUrlParser: true,
   useUnifiedTopology: true 
 }).then(()=>console.log('Databse connected')).catch((err)=>console.log("err",err))
 
+console.log("Conncted mongo");
 
 
 
@@ -34,7 +37,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use("/uploads", express.static(path.join(__dirname, 'uploads')));
+
+// Serve static files from uploads directory
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));// Make sure this matches your BASE_U
+console.log("Uploads path:", path.join(__dirname, "uploads"));
+
+
 app.use('/api/holidays', require("../routes/holidays/index"));
 app.use('/api/admin', require("../routes/admin/index"));
 app.use('/api/global-visa', require("../routes/global-visa/index"));

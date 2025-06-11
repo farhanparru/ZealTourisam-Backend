@@ -63,16 +63,22 @@ module.exports.getBySlug = async (req, res) => {
     }
 };
 
+const BASE_URL = 'http://localhost:3002/uploads'; // Change this to your server's URL
 // Add a new Holiday
 module.exports.add = async (req, res) => {
     try {
-        // Extract images from files (if they exist) or fallback to req.body
-        const images = req.files && req.files['images']
-            ? req.files['images'].map(file => file.path)
-            : [];
-        const thumbnail = req.files && req.files['thumbnail']
-            ? req.files['thumbnail'][0].path
-            : '';
+        console.log("Request Body:", req.body);
+        console.log("Request Files:", req.files); // Add this to debug
+      
+        // Handle images array
+        const images = req.files && req.files['images'] 
+            ? req.files['images'].map(file => `${BASE_URL}/images/${file.filename.replace(/\\/g, '/')}`) // Use forward slashes
+            : (req.body.images && typeof req.body.images === 'string' ? JSON.parse(req.body.images) : []);
+
+         // Handle thumbnail
+        const thumbnail = req.files && req.files['thumbnail'] && req.files['thumbnail'][0]
+            ? `${BASE_URL}/thumbnails/${req.files['thumbnail'][0].filename.replace(/\\/g, '/')}` // Use forward slashes
+            : (req.body.thumbnail || '');
 
         const pdfs = req.files && req.files['pdf']
             ? req.files['pdf'].map(file => ({ type: 'application/pdf', link: file.path }))
