@@ -39,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve static files from uploads directory
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));// Make sure this matches your BASE_U
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));// Make sure this matches your BASE_U
 console.log("Uploads path:", path.join(__dirname, "uploads"));
 
 
