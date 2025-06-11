@@ -105,4 +105,4 @@ const UmrahaSchema = new Schema({
 }, { timestamps: true });
 
 // Export the model
-module.exports = mongoose.model('Umraha for all ', UmrahaSchema);
+module.exports = mongoose.model('Umrahaforall ', UmrahaSchema);

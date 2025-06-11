@@ -10,7 +10,7 @@ const app = express();
 
 
 
-console.log("Starting");
+// console.log("Starting");
 
 app.use(cors({
   origin:["https://zealtourismadmin.vercel.app"],
@@ -26,7 +26,6 @@ mongoose.connect(process.env.MONGODB_URI,{
   useUnifiedTopology: true 
 }).then(()=>console.log('Databse connected')).catch((err)=>console.log("err",err))
 
-console.log("Conncted mongo");
 
 
 
@@ -42,14 +41,15 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));// Make sur
 console.log("Uploads path:", path.join(__dirname, "uploads"));
 
 
+// Main Routes
 app.use('/api/holidays', require("./routes/index"));
 app.use('/api/admin', require("./routes/admin/index"));
 app.use('/api/global-visa', require("./routes/global-visa/index"));
-app.use('/api/umrahall', require('./routes/Umraha for all/index'))
+app.use('/api/umrahall', require('./routes/UmrahaforAll/index'))
 app.use('/api/enquire', require("./routes/enquire/index"))
 app.use('/api/globalvisa', require('./routes/EnquiryVisa/index'))
 
-// Middleware to parse JSON bodies
+
 
 
 
