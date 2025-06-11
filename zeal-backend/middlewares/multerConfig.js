@@ -1,21 +1,47 @@
 const multer = require('multer');
 const path = require('path');
 
+// Define base upload directory (using absolute path)
+const baseUploadDir = path.join(__dirname, '../uploads'); // Adjust path as needed
+
+// Create directories if they don't exist
+const ensureUploadDirs = () => {
+  const dirs = [
+    path.join(baseUploadDir, 'images'),
+    path.join(baseUploadDir, 'thumbnails'),
+    path.join(baseUploadDir, 'pdfs'),
+    path.join(baseUploadDir, 'detailsImage')
+  ];
+
+  dirs.forEach(dir => {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  });
+};
+
+// Execute directory creation
+ensureUploadDirs();
+
 // Set up Multer storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    // Use absolute paths
     if (file.fieldname === 'images') {
-      cb(null, 'uploads/images/');
+      cb(null, path.join(baseUploadDir, 'images'));
     } else if (file.fieldname === 'thumbnail') {
-      cb(null, 'uploads/thumbnails/');
+      cb(null, path.join(baseUploadDir, 'thumbnails'));
     } else if (file.fieldname === 'pdf') {
-      cb(null, 'uploads/pdfs/');
+      cb(null, path.join(baseUploadDir, 'pdfs'));
     } else if (file.fieldname === 'detailsImage') {
-      cb(null, 'uploads/detailsImage/');
+      cb(null, path.join(baseUploadDir, 'detailsImage'));
     }
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
+    // Improved filename sanitization
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const sanitizedName = file.originalname.replace(/[^a-zA-Z0-9._-]/g, '-');
+    cb(null, uniqueSuffix + '-' + sanitizedName);
   },
 });
 
