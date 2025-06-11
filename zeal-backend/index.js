@@ -22,13 +22,22 @@ app.use(cors({
 
 
 
-mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.jnuxpcv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{  
+mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.jnuxpcv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
-  useUnifiedTopology: true 
-}).then(()=>console.log('Databse connected')).catch((err)=>console.log("err",err))
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+  socketTimeoutMS: 45000 // Close sockets after 45s of inactivity
+})
+.then(() => console.log('Database connected'))
+.catch(err => {
+  console.error("Database connection error:", err);
+  process.exit(1); // Exit process with failure
+});
 
-console.log("Conncted mongo");
-
+// Handle connection events
+mongoose.connection.on('connected', () => console.log('Mongoose connected'));
+mongoose.connection.on('error', err => console.error('Mongoose connection error:', err));
+mongoose.connection.on('disconnected', () => console.log('Mongoose disconnected'));
 
 
 
