@@ -1,4 +1,4 @@
-const UmrahaData = require("../../models/umraha");
+const UmrahaData = require("../../../models/umraha");
 
 // Get all Holidays (with optional pagination)
 module.exports.get = async (req, res) => {

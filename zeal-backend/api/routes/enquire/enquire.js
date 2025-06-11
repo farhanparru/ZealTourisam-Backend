@@ -1,4 +1,4 @@
-const enquiry = require('../../models/Enquire')
+const enquiry = require('../../../models/Enquire')
 
 
 module.exports.addEnquiryUmraha = async (req,res)=>{

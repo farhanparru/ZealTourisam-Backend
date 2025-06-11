@@ -1,4 +1,4 @@
-const enquiry = require('../../models/EnquiryForVisa')
+const enquiry = require('../../../models/EnquiryForVisa')
 
 
 module.exports.addEnquiryVisa = async (req,res)=>{

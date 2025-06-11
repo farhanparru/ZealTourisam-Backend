@@ -1,4 +1,4 @@
-const Admin = require("../../models/Admin"); // Ensure the path is correct
+const Admin = require("../././../../models/Admin"); // Ensure the path is correct
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 

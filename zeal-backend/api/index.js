@@ -19,7 +19,7 @@ app.use(cors({
 }))
 
 
-console.log("Sundder");
+
 
 mongoose.connect('mongodb+srv://shaminmuhammad116:PARRU123@cluster0.jnuxpcv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{  
   useNewUrlParser: true,
@@ -38,17 +38,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve static files from uploads directory
+// Serve static files from uploads director
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));// Make sure this matches your BASE_U
 console.log("Uploads path:", path.join(__dirname, "uploads"));
 
 
-app.use('/api/holidays', require("../routes/holidays/index"));
-app.use('/api/admin', require("../routes/admin/index"));
-app.use('/api/global-visa', require("../routes/global-visa/index"));
-app.use('/api/umrahaall', require('../routes/Umraha for all/index'))
-app.use('/api/enquire', require("../routes/enquire/index"))
-app.use('/api/globalvisa', require('../routes/EnquiryVisa/index'))
+app.use('/api/holidays', require("./routes/index"));
+app.use('/api/admin', require("./routes/admin/index"));
+app.use('/api/global-visa', require("./routes/global-visa/index"));
+app.use('/api/umrahaall', require('./routes/Umraha for all/index'))
+app.use('/api/enquire', require("./routes/enquire/index"))
+app.use('/api/globalvisa', require('./routes/EnquiryVisa/index'))
 
 // Middleware to parse JSON bodies
 
@@ -58,6 +58,13 @@ app.use('/api/globalvisa', require('../routes/EnquiryVisa/index'))
 app.get('/', (req, res) => {
   res.send('Welcome to ZealTourism Backend!');
 });
+
+
+// 404 Handler
+app.use((req, res) => {
+  res.status(404).json({ error: 'Not Found' });
+});
+
 
 
 
