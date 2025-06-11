@@ -1,4 +1,4 @@
-const GlobalVisa = require("../../../models/GlobalVisa");
+const GlobalVisa = require("../../models/GlobalVisa");
 
 module.exports.get = async (req, res) => {
     try {
