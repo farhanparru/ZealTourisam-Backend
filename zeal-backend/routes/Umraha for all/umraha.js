@@ -68,7 +68,7 @@ console.log(UmrahaforAll);
 
 // Add a Umrha
 
-const BASE_URL = 'http://localhost:3002/uploads';
+const BASE_URL = 'https://zeal-tourisam-api.vercel.app/uploads';
 
 module.exports.add = async (req, res) => {
     //   console.log("Request Body:", req.body);

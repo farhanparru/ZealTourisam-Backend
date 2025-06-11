@@ -63,7 +63,7 @@ module.exports.getBySlug = async (req, res) => {
     }
 };
 
-const BASE_URL = 'http://localhost:3002/uploads'; // Change this to your server's URL
+const BASE_URL = 'https://zeal-tourisam-api.vercel.app/uploads'; // Change this to your server's URL
 // Add a new Holiday
 module.exports.add = async (req, res) => {
     try {
