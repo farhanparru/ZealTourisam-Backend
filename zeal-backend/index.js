@@ -14,8 +14,9 @@ console.log("Starting");
 
 app.use(cors({
   origin:["https://zealtourismadmin.vercel.app"],
-  methods: ["GET,POST,PUT,DELETE,PATCH"],
-  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }))
 
 
@@ -32,15 +33,14 @@ console.log("Conncted mongo");
 
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve static files from uploads director
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));// Make sure this matches your BASE_U
-console.log("Uploads path:", path.join(__dirname, "uploads"));
+// console.log("Uploads path:", path.join(__dirname, "uploads"));
 
 
 app.use('/api/holidays', require("./routes/index"));
