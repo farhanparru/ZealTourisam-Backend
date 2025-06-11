@@ -13,7 +13,7 @@ const app = express();
 console.log("Starting");
 
 app.use(cors({
-  origin:["https://zeal-tourisam-admin.vercel.app"],
+  origin:["https://zealtourismadmin.vercel.app"],
   methods: ["GET,POST,PUT,DELETE,PATCH"],
   credentials: true,
 }))
