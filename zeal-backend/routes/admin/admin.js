@@ -2,7 +2,7 @@ const Admin = require("../../models/Admin"); // Ensure the path is correct
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const jwtSecret = "secret";
+const jwtSecret = secret;
 const defaultAdminUsername = ZealTourisam;
 const defaultAdminPassword = Admin1234567;
 
