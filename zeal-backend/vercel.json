@@ -2,14 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "./index.js",
+      "src": "zeal-backend/index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "zeal-backend/index.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "./index.js"
+      "dest": "zeal-backend/index.js"
     }
   ]
 }
