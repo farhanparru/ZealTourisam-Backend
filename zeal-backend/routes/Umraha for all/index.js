@@ -11,7 +11,7 @@ router.get('/:id', controller.getSingle);
 router.get('/slug/:slug', controller.getBySlug);
 
 router.post(
-    '/',
+    '/umraha',
     AdminAuth,
     upload.fields([
         { name: 'images', maxCount: 10 },
