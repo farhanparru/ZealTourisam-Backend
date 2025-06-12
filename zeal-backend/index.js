@@ -42,7 +42,7 @@ console.log("Uploads path:", path.join(__dirname, "uploads"));
 
 
 // Main Routes
-app.use('/api/holidays', require("./routes/index"));
+app.use('/api/holidays', require("./routes/holidays/index"));
 app.use('/api/admin', require("./routes/admin/index"));
 app.use('/api/global-visa', require("./routes/global-visa/index"));
 app.use('/api/umrahall', require('./routes/UmrahaforAll/index'))
