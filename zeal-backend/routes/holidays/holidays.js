@@ -75,7 +75,7 @@ module.exports.add = async (req, res) => {
 
          // Handle thumbnail
         const thumbnail = req.files && req.files['thumbnail'] && req.files['thumbnail'][0]
-        ? req.files['images'].map(file => file.path) // Use the Cloudinary URL
+         ? req.files['thumbnail'][0].path 
          : (req.body.thumbnail || '');
 
         const pdfs = req.files && req.files['pdf']
