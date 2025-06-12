@@ -68,26 +68,25 @@ console.log(UmrahaforAll);
 
 // Add a Umrha
 
-const BASE_URL = 'https://zeal-tourisam-api.vercel.app/uploads';
+
 
 module.exports.add = async (req, res) => {
-    //   console.log("Request Body:", req.body);
-    //   console.log("Request Files:", req.files); // Add this to debug
+    
 
     try {
         // Handle images
         const images = req.files && req.files['images']
-            ? req.files['images'].map(file => `${BASE_URL}/images/${file.filename.replace(/\\/g, '/')}`) // Normalize path
+           ? req.files['images'].map(file => file.path) // Use the Cloudinary URL
             : (req.body.images && typeof req.body.images === 'string' ? JSON.parse(req.body.images) : []);
 
         // Handle thumbnail
         const thumbnail = req.files && req.files['thumbnail']
-            ? `${BASE_URL}/thumbnails/${req.files['thumbnail'][0].filename.replace(/\\/g, '/')}` // Normalize path
+           ? req.files['thumbnail'][0].path // Use the Cloudinary URL
             : (req.body.thumbnail || '');
 
         // Handle detailsImage
         const detailsImage = req.files && req.files['detailsImage']
-            ? `${BASE_URL}/detailsImage/${req.files['detailsImage'][0].filename.replace(/\\/g, '/')}` // Normalize path
+            ? req.files['detailsImage'][0].path // Use the Cloudinary URL
             : (req.body.detailsImage || '');
 
         // Parse nested JSON fields with safe parsing
