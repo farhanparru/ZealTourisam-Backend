@@ -54,7 +54,6 @@ module.exports.getSingle = async (req, res) => {
     }
 };
 
-const BASE_URL = 'https://zeal-tourisam-api.vercel.app/uploads'; // Change this to your server's URL
 
 module.exports.add = async (req, res) => {
     try {
@@ -62,15 +61,14 @@ module.exports.add = async (req, res) => {
 
         // Handle images array
         const images = req.files && req.files['images'] 
-            ? req.files['images'].map(file => `${BASE_URL}/images/${file.filename.replace(/\\/g, '/')}`) // Use forward slashes
-            : (req.body.images && typeof req.body.images === 'string' ? JSON.parse(req.body.images) : []);
+        ? req.files['images'].map(file => file.path) // Use the Cloudinary URL
+         : (req.body.images && typeof req.body.images === 'string' ? JSON.parse(req.body.images) : []);
 
-        console.log(req.files, "farhan");
-
+       
         // Handle thumbnail
         const thumbnail = req.files && req.files['thumbnail'] && req.files['thumbnail'][0]
-            ? `${BASE_URL}/thumbnails/${req.files['thumbnail'][0].filename.replace(/\\/g, '/')}` // Use forward slashes
-            : (req.body.thumbnail || '');
+         ? req.files['images'].map(file => file.path) // Use the Cloudinary URL
+         : (req.body.thumbnail || '');
 
         // Create a new GlobalVisa object
         const newGlobalVisa = new GlobalVisa({
@@ -79,7 +77,7 @@ module.exports.add = async (req, res) => {
             thumbnail: thumbnail,
         });
 
-        console.log(newGlobalVisa, "newGlobalVisa");
+       
 
         // Save the new GlobalVisa object to the database
         const savedGlobalVisa = await newGlobalVisa.save();
