@@ -26,8 +26,8 @@ const PricingWithCurrencySchema = new Schema({
 const GlobalVisaSchema = new Schema({
     title: { type: String, required: true },
     description: { type: String },
-   images: [{ type: String }],
-   thumbnail: { type: String },
+    images: [{ type: String }],
+    thumbnail: { type: String },
     details: { type: Schema.Types.Mixed },  // For flexibility, if `details` is a complex object
     // faculty: [{ type: String }],
     howToApply: { type: String },

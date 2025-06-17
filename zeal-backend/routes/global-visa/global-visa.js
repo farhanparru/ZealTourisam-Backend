@@ -66,9 +66,16 @@ module.exports.add = async (req, res) => {
 
        
         // Handle thumbnail
-        const thumbnail = req.files && req.files['thumbnail'] && req.files['thumbnail'][0]
-         ? req.files['images'].map(file => file.path) // Use the Cloudinary URL
-         : (req.body.thumbnail || '');
+         // Handle thumbnail (must be a single string)
+        let thumbnail = '';
+        if (req.files && req.files['thumbnail'] && req.files['thumbnail'][0]) {
+            thumbnail = req.files['thumbnail'][0].path; // Take first file (single URL)
+        } else if (req.body.thumbnail) {
+            // Ensure thumbnail is a string (not an array)
+            thumbnail = Array.isArray(req.body.thumbnail) 
+                ? req.body.thumbnail[0] // Take first element if array
+                : req.body.thumbnail; // Use as-is if string
+        }
 
         // Create a new GlobalVisa object
         const newGlobalVisa = new GlobalVisa({
