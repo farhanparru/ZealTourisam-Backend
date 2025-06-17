@@ -2,38 +2,26 @@ const GlobalVisa = require("../../models/GlobalVisa");
 
 module.exports.get = async (req, res) => {
     try {
-        // Validate and parse query parameters
-        const page = Math.max(parseInt(req.query.page) || 1, 1);
-        const perPage = Math.min(Math.max(parseInt(req.query.perPage) || 10, 1), 100); // Limit to max 100 items per page
-        
-        // Execute count and find in parallel for better performance
-        const [total, globalVisas] = await Promise.all([
-            GlobalVisa.countDocuments(),
-            GlobalVisa.find()
-                .select('field1 field2') // Only select necessary fields
-                .sort({ createdAt: -1 }) // Consistent sorting
-                .skip((page - 1) * perPage)
-                .limit(perPage)
-                .lean() // Return plain JS objects for better performance
-        ]);
+        const { page = 1, perPage = 10 } = req.query;
+
+        const total = await GlobalVisa.countDocuments();
+        const GlobalVisas = await GlobalVisa.find()
+            .skip((page - 1) * perPage)
+            .limit(parseInt(perPage));
 
         res.status(200).json({
             success: true,
-            results: globalVisas,
-            page,
-            perPage,
+            results: GlobalVisas,
+            page: parseInt(page),
+            perPage: parseInt(perPage),
             total,
             totalPages: Math.ceil(total / perPage)
         });
     } catch (error) {
-        console.error('Error fetching GlobalVisas:', error);
-        res.status(500).json({ 
-            success: false, 
-            error: process.env.NODE_ENV === 'development' ? error.message : 'Server error',
-            message: "Error Getting GlobalVisas" 
-        });
+        res.status(500).json({ success: false, error: error.message, message: "Error Getting GlobalVisas" });
     }
 };
+
 
 // Get a single Holiday by Slug
 module.exports.getBySlug = async (req, res) => {
